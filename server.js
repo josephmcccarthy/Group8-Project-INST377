@@ -10,7 +10,7 @@ const staticFolder = 'public';
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
+app.use(express.static('public'));
 app.use('/api', apiRoutes);
 
 async function bootServer() {
