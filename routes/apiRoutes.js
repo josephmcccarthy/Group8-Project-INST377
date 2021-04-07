@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+* eslint-disable no-console */
 import express from 'express';
 import sequelize from 'sequelize';
 
@@ -7,16 +7,16 @@ import db from '../database/initializeDB.js';
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  res.send('group 8 api');
+  res.send('Welcome to the UMD Dining API!');
 });
 
 /// /////////////////////////////////
-/// ////Diseases Endpoints////////
+/// ////Dining Hall Endpoints////////
 /// /////////////////////////////////
-router.get('/diseases', async (req, res) => {
+router.get('/dining', async (req, res) => {
   try {
-    const disease = await db.diseases.findAll();
-    const reply = disease.length > 0 ? { data: disease } : { message: 'no results found' };
+    const halls = await db.DiningHall.findAll();
+    const reply = halls.length > 0 ? { data: halls } : { message: 'no results found' };
     res.json(reply);
   } catch (err) {
     console.error(err);
@@ -24,50 +24,44 @@ router.get('/diseases', async (req, res) => {
   }
 });
 
-router.get('/diseases/:disease_id', async (req, res) => {
+router.get('/dining/:hall_id', async (req, res) => {
   try {
-    const disease = await db.diseases.findAll({
+    const hall = await db.DiningHall.findAll({
       where: {
-        disease_id: req.params.disease_id
+        hall_id: req.params.hall_id
       }
     });
 
-    res.json(disease);
+    res.json(hall);
   } catch (err) {
     console.error(err);
     res.error('Server error');
   }
 });
 
-router.post('/diseases', async (req, res) => {
-  const disease = await db.diseases.findAll();
-  const currentId = (await disease.length) + 1;
+router.post('/dining', async (req, res) => {
+  const halls = await db.DiningHall.findAll();
+  const currentId = (await halls.length) + 1;
   try {
-    const newDisease = await db.diseases.create({
-      disease_id: currentId,
-      disease_name: req.body.disease_name,
-      latin_name: req.body.latin_name,
-      type_of_infection: req.body.type_of_infection,
-      disease_realm: req.body.disease_realm,
-      disease_phylum: req.body.disease_phylum,
-      disease_class: req.body.disease_class,
-      disease_order: req.body.disease_order,
-      disease_family: req.body.disease_family,
-      disease_genus: req.body.disease_genus,
-      disease_species: req.body.disease_species      
+    const newDining = await db.DiningHall.create({
+      hall_id: currentId,
+      hall_name: req.body.hall_name,
+      hall_address: req.body.hall_address,
+      hall_lat: req.body.hall_lat,
+      hall_long: req.body.hall_long
     });
-    res.json(newDisease);
+    res.json(newDining);
   } catch (err) {
     console.error(err);
     res.error('Server error');
   }
 });
 
-router.delete('/diseases/:disease_id', async (req, res) => {
+router.delete('/dining/:hall_id', async (req, res) => {
   try {
-    await db.disease.destroy({
+    await db.DiningHall.destroy({
       where: {
-        disease_id: req.params.disease_id
+        hall_id: req.params.hall_id
       }
     });
     res.send('Successfully Deleted');
@@ -79,22 +73,14 @@ router.delete('/diseases/:disease_id', async (req, res) => {
 
 router.put('/dining', async (req, res) => {
   try {
-    await db.disease.update(
+    await db.DiningHall.update(
       {
-        disease_name: req.body.disease_name,
-        latin_name: req.body.latin_name,
-        type_of_infection: req.body.type_of_infection,
-        disease_realm: req.body.disease_realm,
-        disease_phylum: req.body.disease_phylum,
-        disease_class: req.body.disease_class,
-        disease_order: req.body.disease_order,
-        disease_family: req.body.disease_family,
-        disease_genus: req.body.disease_genus,
-        disease_species: req.body.disease_species 
+        hall_name: req.body.hall_name,
+        hall_location: req.body.hall_location
       },
       {
         where: {
-          disease_id: req.body.disease_id
+          hall_id: req.body.hall_id
         }
       }
     );
@@ -106,11 +92,11 @@ router.put('/dining', async (req, res) => {
 });
 
 /// /////////////////////////////////
-/// ////////Countries to outbreaks Endpoints//////////
+/// ////////Meals Endpoints//////////
 /// /////////////////////////////////
-router.get('/countries_to_outbreaks', async (req, res) => {
+router.get('/meals', async (req, res) => {
   try {
-    const meals = await db.countries_to_outbreaks.findAll();
+    const meals = await db.Meals.findAll();
     res.json(meals);
   } catch (err) {
     console.error(err);
@@ -118,11 +104,11 @@ router.get('/countries_to_outbreaks', async (req, res) => {
   }
 });
 
-router.get('/countries_to_outbreaks/:country_id', async (req, res) => {
+router.get('/meals/:meal_id', async (req, res) => {
   try {
-    const meals = await db.countries_to_outbreaks.findAll({
+    const meals = await db.Meals.findAll({
       where: {
-        country_id: req.params.country_id
+        meal_id: req.params.meal_id
       }
     });
     res.json(meals);
@@ -132,9 +118,9 @@ router.get('/countries_to_outbreaks/:country_id', async (req, res) => {
   }
 });
 
-router.put('/countries_to_outbreaks', async (req, res) => {
+router.put('/meals', async (req, res) => {
   try {
-    await db.countries_to_outbreaks.update(
+    await db.Meals.update(
       {
         meal_name: req.body.meal_name,
         meal_category: req.body.meal_category
@@ -153,11 +139,11 @@ router.put('/countries_to_outbreaks', async (req, res) => {
 });
 
 /// /////////////////////////////////
-/// ////////Countries Endpoints/////////
+/// ////////Macros Endpoints/////////
 /// /////////////////////////////////
-router.get('/countries', async (req, res) => {
+router.get('/macros', async (req, res) => {
   try {
-    const macros = await db.countries.findAll();
+    const macros = await db.Macros.findAll();
     res.send(macros);
   } catch (err) {
     console.error(err);
@@ -165,11 +151,11 @@ router.get('/countries', async (req, res) => {
   }
 });
 
-router.get('/countries/:country_id', async (req, res) => {
+router.get('/macros/:meal_id', async (req, res) => {
   try {
-    const meals = await db.countries.findAll({
+    const meals = await db.Macros.findAll({
       where: {
-        country_id: req.params.country_id
+        meal_id: req.params.meal_id
       }
     });
     res.json(meals);
@@ -208,11 +194,11 @@ router.put('/macros', async (req, res) => {
 });
 
 /// /////////////////////////////////
-/// outbreaks Endpoints///
+/// Dietary Restrictions Endpoints///
 /// /////////////////////////////////
-router.get('/outbreaks', async (req, res) => {
+router.get('/restrictions', async (req, res) => {
   try {
-    const restrictions = await db.outbreaks.findAll();
+    const restrictions = await db.DietaryRestrictions.findAll();
     res.json(restrictions);
   } catch (err) {
     console.error(err);
@@ -220,93 +206,11 @@ router.get('/outbreaks', async (req, res) => {
   }
 });
 
-router.get('/outbreaks/:outbreak_id', async (req, res) => {
+router.get('/restrictions/:restriction_id', async (req, res) => {
   try {
-    const restrictions = await db.outbreaks.findAll({
+    const restrictions = await db.DietaryRestrictions.findAll({
       where: {
-        outbreak_id: req.params.outbreak_id
-      }
-    });
-    res.json(restrictions);
-  } catch (err) {
-    console.error(err);
-    res.error('Server error');
-  }
-});
-
-/// /////////////////////////////////
-/// reports Endpoints///
-/// /////////////////////////////////
-router.get('/reports', async (req, res) => {
-  try {
-    const restrictions = await db.reports.findAll();
-    res.json(restrictions);
-  } catch (err) {
-    console.error(err);
-    res.error('Server error');
-  }
-});
-
-router.get('/reports/:report_id', async (req, res) => {
-  try {
-    const restrictions = await db.reports.findAll({
-      where: {
-        Report_id: req.params.Report_id
-      }
-    });
-    res.json(restrictions);
-  } catch (err) {
-    console.error(err);
-    res.error('Server error');
-  }
-});
-
-/// /////////////////////////////////
-/// treatments_to_diseases Endpoints///
-/// /////////////////////////////////
-router.get('/treatments_to_diseases', async (req, res) => {
-  try {
-    const restrictions = await db.treatments_to_diseases.findAll();
-    res.json(restrictions);
-  } catch (err) {
-    console.error(err);
-    res.error('Server error');
-  }
-});
-
-router.get('/treatments_to_diseases/:disease_id', async (req, res) => {
-  try {
-    const restrictions = await db.treatments_to_diseases.findAll({
-      where: {
-        disease_id: req.params.disease_id
-      }
-    });
-    res.json(restrictions);
-  } catch (err) {
-    console.error(err);
-    res.error('Server error');
-  }
-});
-
-
-/// /////////////////////////////////
-/// treatments Endpoints///
-/// /////////////////////////////////
-router.get('/treatments', async (req, res) => {
-  try {
-    const restrictions = await db.treatments.findAll();
-    res.json(restrictions);
-  } catch (err) {
-    console.error(err);
-    res.error('Server error');
-  }
-});
-
-router.get('/treatments/:vaccine_name', async (req, res) => {
-  try {
-    const restrictions = await db.treatments.findAll({
-      where: {
-        vaccine_name: req.params.vaccine_name
+        restriction_id: req.params.restriction_id
       }
     });
     res.json(restrictions);
