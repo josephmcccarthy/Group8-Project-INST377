@@ -366,4 +366,8 @@ router.get('/custom', async (req, res) => {
   }
 });
 
+<<<<<<< HEAD
 export default router;
+=======
+export default router;
+>>>>>>> 7dc3272b5f9fbcede28c1d59061c2306800be8bc
