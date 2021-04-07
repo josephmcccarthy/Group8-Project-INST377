@@ -13,7 +13,7 @@ export default (sequelize, DataTypes) => {
         fatalities: {
             type: DataTypes.INTEGER
           },
-        conirmed_cases: {
+        confirmed_cases: {
           type: DataTypes.INTEGER
         },
         probable_cases: {
@@ -21,7 +21,7 @@ export default (sequelize, DataTypes) => {
           },
           outbreak_id: {
             type: DataTypes.INTEGER
-          }
+          },
       },
       { freezeTableName: true, timestamps: false }
     );
