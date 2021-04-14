@@ -155,10 +155,13 @@ router.put('/countries_to_outbreaks', async (req, res) => {
 /// /////////////////////////////////
 /// ////////Countries Endpoints/////////
 /// /////////////////////////////////
+
+//written by Faraz Hafeez
+
 router.get('/countries', async (req, res) => {
   try {
-    const macros = await db.countries.findAll();
-    res.send(macros);
+    const country = await db.countries.findAll();
+    res.send(country);
   } catch (err) {
     console.error(err);
     res.error('Server error');
@@ -167,36 +170,65 @@ router.get('/countries', async (req, res) => {
 
 router.get('/countries/:country_id', async (req, res) => {
   try {
-    const meals = await db.countries.findAll({
+    const country = await db.countries.findAll({
       where: {
         country_id: req.params.country_id
       }
     });
-    res.json(meals);
+    res.json(country);
   } catch (err) {
     console.error(err);
     res.error('Server error');
   }
 });
 
-router.put('/macros', async (req, res) => {
+//post method 
+router.post('/countries', async (req, res) => {
+  const country = await db.countries.findAll();
+  const currentId = (await countries.length) + 1;
+  try {
+    const newCountry = await db.countries.create({
+      country_id: currentId,
+      country_name: req.body.country_name,
+      historical_name: req.body.historical_name,
+      country_code: req.body.country_code,
+    });
+    res.json(newCountry);
+  } catch (err) {
+    console.error(err);
+    res.error('Server error');
+  }
+});
+
+//delete records
+router.delete('/countries/:country_id', async (req, res) => {
+  try {
+    await db.countries.destroy({
+      where: {
+        country_id: req.params.country_id
+      }
+    });
+    res.send('Successfully Deleted');
+  } catch (err) {
+    console.error(err);
+    res.error('Server error');
+  }
+});
+
+
+//put method for countries 
+router.put('/countries', async (req, res) => {
   try {
     // N.B. - this is a good example of where to use code validation to confirm objects
-    await db.Macros.update(
+    await db.countries.update(
       {
-        meal_name: req.body.meal_name,
-        meal_category: req.body.meal_category,
-        calories: req.body.calories,
-        serving_size: req.body.serving_size,
-        cholesterol: req.body.cholesterol,
-        sodium: req.body.sodium,
-        carbs: req.body.carbs,
-        protein: req.body.protein,
-        fat: req.body.fat
+        country_name: req.body.country_name,
+        historical_name: req.body.historical_name,
+        country_code: req.body.country_code
       },
       {
         where: {
-          meal_id: req.body.meal_id
+          country_id: req.body.country_id
         }
       }
     );
@@ -205,6 +237,9 @@ router.put('/macros', async (req, res) => {
     console.error(err);
     res.error('Server error');
   }
+
+
+
 });
 
 /// /////////////////////////////////
@@ -237,6 +272,9 @@ router.get('/outbreaks/:outbreak_id', async (req, res) => {
 /// /////////////////////////////////
 /// reports Endpoints///
 /// /////////////////////////////////
+
+// joseph mccarthy
+
 router.get('/reports', async (req, res) => {
   try {
     const restrictions = await db.reports.findAll();
@@ -247,7 +285,7 @@ router.get('/reports', async (req, res) => {
   }
 });
 
-router.get('/reports/:report_id', async (req, res) => {
+router.get('/reports/:Report_id', async (req, res) => {
   try {
     const restrictions = await db.reports.findAll({
       where: {
@@ -260,6 +298,63 @@ router.get('/reports/:report_id', async (req, res) => {
     res.error('Server error');
   }
 });
+
+router.post('/reports', async (req, res) => {
+  const report = await db.reports.indAll();
+  const currentId = (await report.length) + 1;
+  try {
+    const newReport = await db.reports.create({
+      Report_id: currentId,
+      report_date: req.body.report_date,
+      fatalities: req.body.fatalities,
+      confirmed_cases: req.body.confirmed_cases,
+      probably_cases: req.body.probably_cases,
+      outbreak_id: req.body.outbreak_id
+    });
+    res.json(newReport);
+  } catch (err) {
+    console.error(err);
+    res.error('Server error');
+  }
+});
+
+router.delete('/reports/:Report_id', async (req, res) => {
+  try {
+    await db.report.destroy({
+      where: {
+        Report_id: req.params.Report_id
+      }
+    });
+    res.send('Successfully Deleted');
+  } catch (err) {
+    console.error(err);
+    res.error('Server error');
+  }
+});
+
+router.put('/reports', async (req, res) => {
+  try {
+    await db.report.update(
+      {
+      report_date: req.body.report_date,
+      fatalities: req.body.fatalities,
+      confirmed_cases: req.body.confirmed_cases,
+      probably_cases: req.body.probably_cases,
+      outbreak_id: req.body.outbreak_id 
+      },
+      {
+        where: {
+          Report_id: req.body.Report_id
+        }
+      }
+    );
+    res.send('Successfully Updated');
+  } catch (err) {
+    console.error(err);
+    res.error('Server error');
+  }
+});
+
 
 /// /////////////////////////////////
 /// treatments_to_diseases Endpoints///
