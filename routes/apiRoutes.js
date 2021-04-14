@@ -156,6 +156,10 @@ router.put('/countries_to_outbreaks', async (req, res) => {
 /// /////////////////////////////////
 /// ////////Countries Endpoints/////////
 /// /////////////////////////////////
+
+//written by Faraz Hafeez
+
+
 router.get('/countries', async (req, res) => {
   try {
     const country = await db.countries.findAll();
