@@ -3,6 +3,7 @@ import express from 'express';
 import sequelize from 'sequelize';
 
 import db from '../database/initializeDB.js';
+import countries from '../models/countries.js';
 
 const router = express.Router();
 
@@ -157,8 +158,8 @@ router.put('/countries_to_outbreaks', async (req, res) => {
 /// /////////////////////////////////
 router.get('/countries', async (req, res) => {
   try {
-    const macros = await db.countries.findAll();
-    res.send(macros);
+    const country = await db.countries.findAll();
+    res.send(country);
   } catch (err) {
     console.error(err);
     res.error('Server error');
@@ -167,36 +168,65 @@ router.get('/countries', async (req, res) => {
 
 router.get('/countries/:country_id', async (req, res) => {
   try {
-    const meals = await db.countries.findAll({
+    const country = await db.countries.findAll({
       where: {
         country_id: req.params.country_id
       }
     });
-    res.json(meals);
+    res.json(country);
   } catch (err) {
     console.error(err);
     res.error('Server error');
   }
 });
 
-router.put('/macros', async (req, res) => {
+//post method 
+router.post('/countries', async (req, res) => {
+  const country = await db.countries.findAll();
+  const currentId = (await countries.length) + 1;
+  try {
+    const newCountry = await db.countries.create({
+      country_id: currentId,
+      country_name: req.body.country_name,
+      historical_name: req.body.historical_name,
+      country_code: req.body.country_code,
+    });
+    res.json(newCountry);
+  } catch (err) {
+    console.error(err);
+    res.error('Server error');
+  }
+});
+
+//delete records
+router.delete('/countries/:country_id', async (req, res) => {
+  try {
+    await db.countries.destroy({
+      where: {
+        country_id: req.params.country_id
+      }
+    });
+    res.send('Successfully Deleted');
+  } catch (err) {
+    console.error(err);
+    res.error('Server error');
+  }
+});
+
+
+//put method for countries 
+router.put('/countries', async (req, res) => {
   try {
     // N.B. - this is a good example of where to use code validation to confirm objects
-    await db.Macros.update(
+    await db.countries.update(
       {
-        meal_name: req.body.meal_name,
-        meal_category: req.body.meal_category,
-        calories: req.body.calories,
-        serving_size: req.body.serving_size,
-        cholesterol: req.body.cholesterol,
-        sodium: req.body.sodium,
-        carbs: req.body.carbs,
-        protein: req.body.protein,
-        fat: req.body.fat
+        country_name: req.body.country_name,
+        historical_name: req.body.historical_name,
+        country_code: req.body.country_code
       },
       {
         where: {
-          meal_id: req.body.meal_id
+          country_id: req.body.country_id
         }
       }
     );
@@ -205,6 +235,9 @@ router.put('/macros', async (req, res) => {
     console.error(err);
     res.error('Server error');
   }
+
+
+
 });
 
 /// /////////////////////////////////
