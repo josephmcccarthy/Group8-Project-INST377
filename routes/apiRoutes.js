@@ -246,6 +246,9 @@ router.put('/countries', async (req, res) => {
 /// /////////////////////////////////
 /// outbreaks Endpoints///
 /// /////////////////////////////////
+
+// Laraib Laubach
+
 router.get('/outbreaks', async (req, res) => {
   try {
     const restrictions = await db.outbreaks.findAll();
