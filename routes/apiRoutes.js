@@ -273,6 +273,70 @@ router.get('/outbreaks/:outbreak_id', async (req, res) => {
   }
 });
 
+router.post('/outbreaks', async (req, res) => {
+  const restrictions = await db.outbreaks.indAll();
+  const currentId = (await outbreaks.length) + 1;
+  try {
+    const newOutbreak = await db.outbreaks.create({
+      outbreak_id: currentId,
+      disease_id: req.body.disease_id,
+      total_hospitalizations: req.body.total_hospitalizations,
+      total_cases: req.body.total_cases,
+      total_deaths: req.body.total_deaths,
+      first_confirmed_case: req.body.first_confirmed_case,
+      last_confirmed_case: req.body.last_confirmed_case,
+      pandemic_start_date: req.body.pandemic_start_date,
+      pandemic_end_date: req.body.pandemic_end_date,
+      outbreak_origin_cause: req.body.outbreak_origin_cause
+    });
+    res.json(newOutbreak);
+  } catch (err) {
+    console.error(err);
+    res.error('Server error');
+  }
+});
+
+router.delete('/outbreaks/:outbreak_id', async (req, res) => {
+  try {
+    await db.outbreaks.destroy({
+      where: {
+        outbreak_id: req.params.outbreak_id
+      }
+    });
+    res.send('Successfully Deleted');
+  } catch (err) {
+    console.error(err);
+    res.error('Server error');
+  }
+});
+
+router.put('/outbreaks', async (req, res) => {
+  try {
+    await db.outbreaks.update(
+      {
+      disease_id: req.body.disease_id,
+      total_hospitalizations: req.body.total_hospitalizations,
+      total_cases: req.body.total_cases,
+      total_deaths: req.body.total_deaths,
+      first_confirmed_case: req.body.first_confirmed_case,
+      last_confirmed_case: req.body.last_confirmed_case,
+      pandemic_start_date: req.body.pandemic_start_date,
+      pandemic_end_date: req.body.pandemic_end_date,
+      outbreak_origin_cause: req.body.outbreak_origin_cause 
+      },
+      {
+        where: {
+          outbreak_id: req.body.outbreak_id
+        }
+      }
+    );
+    res.send('Successfully Updated');
+  } catch (err) {
+    console.error(err);
+    res.error('Server error');
+  }
+});
+
 /// /////////////////////////////////
 /// reports Endpoints///
 /// /////////////////////////////////
