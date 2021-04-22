@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 const staticFolder = 'public';
 
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(express.json('database/config.js'));
 app.use(express.static('public'));
 app.use('/api', apiRoutes);
 
@@ -24,5 +24,16 @@ async function bootServer() {
     console.error(err);
   }
 }
+
+app.route('/api')
+  .get(async (req, res) => {
+    console.log('GET request detected');
+    const data = await fetch('');
+    const json = await data.json();
+    res.json(json);
+  })
+  .post(async (req, res) => {
+    res.send('Data entered');
+  });
 
 bootServer();

@@ -23,6 +23,49 @@
     <div class="main">
         <h1>Group 8 Disease Database</h1>
     </div>
+    <div class="container">
+        <form action="/api" method="post" name='mainForm' id='mainForm'>
+            <ul class="flex-outer">
+              <li>
+                <label for="country">Country</label>
+                <input type="text" id="country" name='country' placeholder="Enter a country">
+              </li>
+              <li>
+                <label for="disease">Disease</label>
+                <input type="text" id="disease" name='disease' placeholder="Enter a disease">
+              </li>
+              <li>
+                <label for="cases">Cases</label>
+                <input type="text" id="cases" name='cases' placeholder="Enter amount of cases">
+              </li>
+              <li>
+                <label for="deaths">Deaths</label>
+                <input type="text" id="deaths" name='deaths' placeholder="Enter death">
+              </li>
+              <li>
+                <label for="initial-date">Initial Outbreak Date</label>
+                <input type="text" id="initial-date" name='initial-date' placeholder="Enter date">
+              </li>
+              <li>
+                <label for="last-case">Last Case</label>
+                <input type="text" id="last-case" name='last-case' placeholder="Enter last case">
+              </li>
+              <li>
+                <label for="vaccine-name">Vaccine Name</label>
+                <input type="text" id="vaccine-name" name='vaccine-name' placeholder="Enter vaccine name">
+              </li>
+              <li>
+                <label for="message" >Message</label>
+                <textarea rows="5" cols="33" name='message' id="message" placeholder="Enter your message here"></textarea>
+              </li>
+              <li>
+                <button type="submit" action="/API" method="post" name='completeForm' id='completeForm' >
+                    Submit 
+                </button>
+              </li>
+            </ul>   
+          </form>
+        </div> 
 </body>
 <script src="script.js"></script>
 </html>
