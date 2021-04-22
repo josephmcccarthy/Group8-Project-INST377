@@ -15,7 +15,6 @@ body {
     color: white;
   }
 
-  
   .container {
     width: 80%;
     max-width: 1200px;
@@ -95,4 +94,12 @@ body {
   
   .flex-inner li {
     width: 100px;
+  }
+
+  .navbar{
+    /*list-style-type: none;
+    align-items: center;
+    padding-left: 512px;
+    */
+    justify-content: space-evenly;
   }
