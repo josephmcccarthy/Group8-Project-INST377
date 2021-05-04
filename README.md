@@ -1,8 +1,8 @@
 # Intercontinental Diseases
 
 ## Links
-- Website: https://group8-project-inst377.herokuapp.com/
-- Developer Manual: https://github.com/josephmcccarthy/Group8-Project-INST377/#developer-manual
+- [Website](https://group8-project-inst377.herokuapp.com/)
+- [Developer Manual](https://github.com/josephmcccarthy/Group8-Project-INST377/#developer-manual)
 
 ## Description of Project
 In a world of disinformation, we set out with one goal: set the record straight when it comes to disease information. This website allows us to aggregate information about the world's deadliest diseases, compare mortality and demographics and so on. All of this is in order to create a space for accurate, reliable information for use in research, prevention, and funding. Firstly, we wanted to examine the effects that these disease have on different people in different geographic regions over time, which is especially relevant given the current climate surrounding the Covid-19 pandemic.
