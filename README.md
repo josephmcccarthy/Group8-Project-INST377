@@ -1,4 +1,6 @@
-# Intercontinental Diseases
+# README
+
+## Intercontinental Diseases
 
 ## Links
 - [Website](https://group8-project-inst377.herokuapp.com/)
