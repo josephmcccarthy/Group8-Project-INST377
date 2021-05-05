@@ -4,7 +4,15 @@ body {
     color: rgb(0, 0, 0);
     padding: 50px 0;
   }
-
+  .main{
+    padding: 8px;
+    font-weight: 600;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+    text-align-last: center;
+    padding-left: 200px;
+    color: white;
+  }
   h1{
     padding: 8px;
     font-weight: 500;
