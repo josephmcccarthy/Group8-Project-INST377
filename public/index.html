@@ -8,7 +8,8 @@
 </head>
 <body>
     <div class="header">
-            <nav class="navbar">
+      <h3>Intercontinental Diseases</h3>
+            <nav class="navbar is-spaced">
                 <div class="navbar-brand">
                     <a class="navbar-item" href="/index.html">Main</a>
                     <a class="navbar-item" href="/countries.html">Countries</a>
@@ -20,9 +21,7 @@
                 </div>
             </nav>
     </div>
-    <div class="main">
-        <h1>Group 8 Disease Database</h1>
-    </div>
+      </div>
     <div class="container">
         <form action="/api" method="post" name='mainForm' id='mainForm'>
             <ul class="flex-outer">
@@ -40,7 +39,7 @@
               </li>
               <li>
                 <label for="deaths">Deaths</label>
-                <input type="text" id="deaths" name='deaths' placeholder="Enter death">
+                <input type="text" id="deaths" name='deaths' placeholder="Enter amount of deaths">
               </li>
               <li>
                 <label for="initial-date">Initial Outbreak Date</label>
@@ -48,7 +47,7 @@
               </li>
               <li>
                 <label for="last-case">Last Case</label>
-                <input type="text" id="last-case" name='last-case' placeholder="Enter last case">
+                <input type="text" id="last-case" name='last-case' placeholder="Enter most recent case">
               </li>
               <li>
                 <label for="vaccine-name">Vaccine Name</label>

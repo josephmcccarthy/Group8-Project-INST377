@@ -1,18 +1,19 @@
-body {
+  body {
     font: normal 18px/1.5 "Fira Sans", "Helvetica Neue", sans-serif;
-    background: #5a595a;
+    background:#080357;
     color: rgb(0, 0, 0);
     padding: 50px 0;
   }
 
   h1{
-    padding: 8px;
     font-weight: 500;
+    font-size: 20;
+    padding: 30px;
     letter-spacing: .09em;
     text-transform: uppercase;
     text-align-last: center;
     padding-left: 200px;
-    color: white;
+    color: #FF9F1C;
   }
 
   .container {
@@ -34,6 +35,7 @@ body {
   .flex-outer {
     max-width: 800px;
     margin: 0 auto;
+    padding: 30px;
   }
   
   .flex-outer li,
@@ -55,15 +57,18 @@ body {
   .flex-outer li label,
   .flex-outer li p {
     padding: 8px;
-    font-weight: 300;
+    font-weight: 500;
     letter-spacing: .09em;
     text-transform: uppercase;
+    color:#FF9F1C;
+
   }
   
   .flex-outer > li > label,
   .flex-outer li p {
     flex: 1 0 120px;
     max-width: 220px;
+    
   }
   
   .flex-outer > li > label + *,
@@ -79,27 +84,48 @@ body {
   .flex-outer li textarea {
     padding: 15px;
     border: none;
+    color:#FF9F1C;
+    font-weight: 500;
+
   }
   
   .flex-outer li button {
-    
     padding: 8px 16px;
     border: none;
-    background: rgb(255, 255, 255);
-    color: #000000;
+    color: #d6ffb7;
+    background: #FFC15E;
     text-transform: uppercase;
     letter-spacing: .09em;
     border-radius: 2px;
+    font-weight: 500;
   }
   
   .flex-inner li {
     width: 100px;
   }
 
-  .navbar{
+  .navbar {
     /*list-style-type: none;
     align-items: center;
     padding-left: 512px;
     */
     justify-content: space-evenly;
+    background: #FFC15E;
+
+  }
+
+  .navbar-item{
+    color: #d6ffb7;
+    font-size: 20;
+
+  }
+
+  h3{
+    font-weight: 500;
+    font-size: 50;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+    text-align-last: center;
+    padding-left: 200px;
+    color: #FF9F1C
   }
