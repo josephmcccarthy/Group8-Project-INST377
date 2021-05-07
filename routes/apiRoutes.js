@@ -523,11 +523,22 @@ router.get('/treatments/:vaccine_name', async (req, res) => {
 });
 
 router.post('/treatments', async (req, res) => {
-  const report = await db.reports.indAll();
-  const currentId = (await report.length) + 1;
+  //const report = await db.reports.indAll();
+  //const currentId = (await report.length) + 1;
+  
+  console.info('Post request to /treatments', req.body);
+  
+  const existingTreatments = await db.treatments.findAll({
+    where: {
+      total_vaccinations: req.body.report_date
+    }
+  });
+  console.log(existingTreatments);
+
+  
   try {
     const newReport = await db.reports.create({
-      vaccine_name: currentId,
+    //  vaccine_name: currentId,
       total_vaccinations: req.body.report_date,
       vaccine_form: req.body.vaccine_form,
       vaccine_success_rate: req.body.vaccine_success_rate,
