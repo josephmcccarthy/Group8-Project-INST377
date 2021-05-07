@@ -140,4 +140,17 @@
     display:block;
     margin: 0 auto;
     color: aliceblue;
+    padding-left: 612px;
+    }
+
+
+      h5{
+        font-weight: 500;
+        font-size: 20;
+        padding: 30px;
+        padding-right: 512px;
+        letter-spacing: .09em;
+        text-transform: uppercase;
+        text-align-last: center;
+        color: #FF9F1C;
       }
