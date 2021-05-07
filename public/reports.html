@@ -21,7 +21,25 @@
             </nav>
     </div>
     <div class="main">
-        <h1>Reports page will be added later</h1>
+        <h1>Newest Report Information</h1>
+        <div id="myData"></div>
+        <script>
+            fetch('http://localhost:3000/api/reports/')
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    appendData(data);
+                })
+            function appendData(data) {
+                var mainContainer = document.getElementById("myData");
+                for (var i = 0; i < data.length; i++) {
+                    var div = document.createElement("div");
+                    div.innerHTML = 'Cases: ' + data[i].confirmed_cases + ", fatalities: " + data[i].fatalities;
+                    mainContainer.appendChild(div);
+                }
+            }
+        </script>
     </div>
 </body>
 <script src="apiRoutes.js"></script>

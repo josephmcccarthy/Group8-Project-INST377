@@ -21,7 +21,25 @@
             </nav>
     </div>
     <div class="main">
-        <h1>Outbreaks page will be added later</h1>
+        <h1>Most recent outbreaks</h1>
+        <div id="myData"></div>
+        <script>
+            fetch('http://localhost:3000/api/outbreaks/')
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    appendData(data);
+                })
+            function appendData(data) {
+                var mainContainer = document.getElementById("myData");
+                for (var i = 0; i < data.length; i++) {
+                    var div = document.createElement("div");
+                    div.innerHTML = 'Most recent outbreak of disease ID ' + data[i].disease_id+ ": " + data[i].last_confirmed_case;
+                    mainContainer.appendChild(div);
+                }
+            }
+        </script>
     </div>
 </body>
 <script src="script.js"></script>
