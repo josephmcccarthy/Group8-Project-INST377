@@ -31,22 +31,25 @@
             and he set up the sql in a way that nested the json data so we can't figure out how to fetch it
             //faraz and i (joseph) spent like 5 hours doing nested loops and trying to increment the url 
             in loops but it never worked, pls don't take off too much thank u (:
+     
 <script>
-    fetch('http://localhost:3000/api/diseases/1')
-                        .then(function (response) {
-                            return response.json();
-                        })
-                        .then(function (data) {
-                            appendData(data);
-                        })
-                    function appendData(data) {
-                        var mainContainer = document.getElementById("myData");
-                        for (var i = 0; i < 21; i++) {
-                            var div = document.createElement("div");
-                            div.innerHTML = div.innerHTML + ('Disease: ' + fetch('api/diseases/' + i));
-                            mainContainer.appendChild(div);
-                            }
-                        }
+    fetch('api/diseases/')
+      .then(function (response) {
+      return response.json();
+      })
+      .then(function (data) {
+      appendData(data);
+      })
+      function appendData(data) {
+      var mainContainer = document.getElementById("myData");
+      for (var i = 1; i < 22; i++) {
+        var div = document.createElement("div");
+        //div.innerHTML = div.innerHTML + ('Disease: ' + fetch('api/diseases/' + i));
+        div.innerHTML = div.innerHTML + 
+        ('Disease: ' + fetch(`api/diseases/${data[i]}`));
+        mainContainer.appendChild(div);
+        }
+        }
       </script>
     -->
       <li>H1N1</li>
