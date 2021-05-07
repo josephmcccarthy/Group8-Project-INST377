@@ -479,6 +479,61 @@ router.get('/treatments/:vaccine_name', async (req, res) => {
   }
 });
 
+router.post('/treatments', async (req, res) => {
+  const report = await db.reports.indAll();
+  const currentId = (await report.length) + 1;
+  try {
+    const newReport = await db.reports.create({
+      vaccine_name: currentId,
+      total_vaccinations: req.body.report_date,
+      vaccine_form: req.body.vaccine_form,
+      vaccine_success_rate: req.body.vaccine_success_rate,
+      vaccine_release_date: req.body.vaccine_release_date,
+    });
+    res.json(newReport);
+  } catch (err) {
+    console.error(err);
+    res.error('Server error');
+  }
+});
+
+router.delete('/treatments/:vaccine_name', async (req, res) => {
+  try {
+    await db.report.destroy({
+      where: {
+        vaccine_name: req.params.vaccine_name
+      }
+    });
+    res.send('Successfully Deleted');
+  } catch (err) {
+    console.error(err);
+    res.error('Server error');
+  }
+});
+
+router.put('/treatments', async (req, res) => {
+  try {
+    await db.report.update(
+      {
+        vaccine_name: currentId,
+        total_vaccinations: req.body.report_date,
+        vaccine_form: req.body.vaccine_form,
+        vaccine_success_rate: req.body.vaccine_success_rate,
+        vaccine_release_date: req.body.vaccine_release_date
+      },
+      {
+        where: {
+          vaccine_name: req.body.vaccine_name
+        }
+      }
+    );
+    res.send('Successfully Updated');
+  } catch (err) {
+    console.error(err);
+    res.error('Server error');
+  }
+});
+
 /// //////////////////////////////////
 /// ///////Custom SQL Endpoint////////
 /// /////////////////////////////////
