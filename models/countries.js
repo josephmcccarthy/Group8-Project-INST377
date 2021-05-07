@@ -5,14 +5,15 @@ export default (sequelize, DataTypes) => {
       country_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
       },
       country_name: {
         type: DataTypes.STRING
       },
       historical_name: {
           type: DataTypes.STRING
-        },
+      },
       country_code: {
         type: DataTypes.STRING
       }

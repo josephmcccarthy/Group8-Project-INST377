@@ -41,11 +41,22 @@ router.get('/diseases/:disease_id', async (req, res) => {
 });
 
 router.post('/diseases', async (req, res) => {
-  const disease = await db.diseases.findAll();
-  const currentId = (await disease.length) + 1;
+  
+  console.info('Post request to /diseases', req.body);
+
+  const existingDiseases = await db.diseases.findAll({
+    where: {
+      disease_name: req.body.disease_name      
+    }
+  });
+  console.log(existingDiseases);
+
+  
+  //const disease = await db.diseases.findAll();
+  //const currentId = (await disease.length) + 1;
   try {
     const newDisease = await db.diseases.create({
-      disease_id: currentId,
+    //  disease_id: currentId,
       disease_name: req.body.disease_name,
       latin_name: req.body.latin_name,
       type_of_infection: req.body.type_of_infection,
@@ -60,7 +71,7 @@ router.post('/diseases', async (req, res) => {
     res.json(newDisease);
   } catch (err) {
     console.error(err);
-    res.error('Server error');
+    res.json('Server error');
   }
 });
 
@@ -185,11 +196,21 @@ router.get('/countries/:country_id', async (req, res) => {
 
 //post method 
 router.post('/countries', async (req, res) => {
-  const country = await db.countries.findAll();
-  const currentId = (await countries.length) + 1;
+  console.info('Post request to /countries', req.body);
+  
+  const existingCountries = await db.countries.findAll({
+    where: {
+      country_name: req.body.country_name
+    }
+  });
+  console.log(existingCountries);
+
+
+//  const country = await db.countries.findAll();
+ // const currentId = (await countries.length) + 1;
   try {
     const newCountry = await db.countries.create({
-      country_id: currentId,
+     // country_id: currentId,
       country_name: req.body.country_name,
       historical_name: req.body.historical_name,
       country_code: req.body.country_code,
@@ -197,9 +218,9 @@ router.post('/countries', async (req, res) => {
     res.json(newCountry);
   } catch (err) {
     console.error(err);
-    res.error('Server error');
+    res.json('Server error');
   }
-});
+ });
 
 //delete records
 router.delete('/countries/:country_id', async (req, res) => {
@@ -212,7 +233,7 @@ router.delete('/countries/:country_id', async (req, res) => {
     res.send('Successfully Deleted');
   } catch (err) {
     console.error(err);
-    res.error('Server error');
+    res.json('Server error');
   }
 });
 
@@ -274,11 +295,23 @@ router.get('/outbreaks/:outbreak_id', async (req, res) => {
 });
 
 router.post('/outbreaks', async (req, res) => {
-  const restrictions = await db.outbreaks.indAll();
-  const currentId = (await outbreaks.length) + 1;
+  
+  console.info('Post request to /outbreaks', req.body);
+  
+  const existingOutbreaks = await db.outbreaks.findAll({
+    where: {
+      total_hospitalizations: req.body.total_hospitalizations
+    }
+  });  
+  console.log(existingOutbreaks);
+
+
+  
+  //const restrictions = await db.outbreaks.indAll();
+  //const currentId = (await outbreaks.length) + 1;
   try {
     const newOutbreak = await db.outbreaks.create({
-      outbreak_id: currentId,
+      //outbreak_id: currentId,
       disease_id: req.body.disease_id,
       total_hospitalizations: req.body.total_hospitalizations,
       total_cases: req.body.total_cases,
@@ -368,11 +401,21 @@ router.get('/reports/:Report_id', async (req, res) => {
 });
 
 router.post('/reports', async (req, res) => {
-  const report = await db.reports.indAll();
-  const currentId = (await report.length) + 1;
+  
+  console.info('Post request to /reports', req.body);
+  
+  const existingReports = await db.reports.findAll({
+    where: {
+      report_date: req.body.report_date,
+    }
+  });  
+  console.log(existingReports);
+  
+  //const report = await db.reports.indAll();
+  //const currentId = (await report.length) + 1;
   try {
     const newReport = await db.reports.create({
-      Report_id: currentId,
+      //Report_id: currentId,
       report_date: req.body.report_date,
       fatalities: req.body.fatalities,
       confirmed_cases: req.body.confirmed_cases,

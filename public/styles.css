@@ -135,3 +135,9 @@
     padding-left: 200px;
     color: #FF9F1C
   }
+
+  .wrapper {
+    display:block;
+    margin: 0 auto;
+    color: aliceblue;
+      }

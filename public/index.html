@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Group 8 Project </title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-    <link href = "styles.css" rel = "stylesheet" />
+    <link href = "./styles.css" rel = "stylesheet" />
 </head>
 <body>
     <div class="header">
@@ -22,48 +22,130 @@
             </nav>
     </div>
       </div>
-    <div class="container">
-        <form action="/api" method="post" name='mainForm' id='mainForm'>
-            <ul class="flex-outer">
+    <div class="wrapper">
+           <ul>  
+            <h1>Add New Country Info</h1>
+              <form action= '/api/countries' id="recordSubmit" class="form" >
+                <li>
+                  <label for="country_name"> Country Name</label>
+                  <input type="text" name="country_name" id="country_name"/>  
+                </li>
+
+                <li>
+                  <label for="country_code"> Country Code </label>
+                  <input type="text" name="country_name" id="country_name"/>  
+                </li>
+                <button type="submit" >Submit Form</button>
+              </form>
+
+              <h1>Add New Disease Info</h1>
+              <form action= '/api/diseases' id="recordSubmit" class="form" >
+                <li>
+                  <label for="disease_name"> Disease Name</label>
+                  <input type="text" name="disease_name" id="disease_name"/>  
+                </li>
+
+                <li>
+                  <label for="latin_name"> Latin name </label>
+                  <input type="text" name="latin_name" id="latin_name"/>  
+                </li>
+
+                <li>
+                  <label for="type_of_infection"> Type of infection </label>
+                  <input type="text" name="type_of_infection" id="type_of_infection"/>  
+                </li>
+
+                <li>
+                  <label for="disease_species"> Disease Species </label>
+                  <input type="text" name="disease_species" id="disease_species"/>  
+                </li>
+
+                <button type="submit" >Submit Form</button>
+              </form>
+            
+            <h1>Add New Outbreaks Info</h1>
+            <form action= '/api/outbreaks' id="recordSubmit" class="form" >
               <li>
-                <label for="country">Country</label>
-                <input type="text" id="country" name='country' placeholder="Enter a country">
+                <label for="total_hospitalizations"> Total hospitalizations</label>
+                <input type="text" name="total_hospitalizations" id="total_hospitalizations"/>  
               </li>
+
               <li>
-                <label for="disease">Disease</label>
-                <input type="text" id="disease" name='disease' placeholder="Enter a disease">
+                <label for="total_cases"> Total cases </label>
+                <input type="number" name="total_cases" id="total_cases"/>  
               </li>
+
               <li>
-                <label for="cases">Cases</label>
-                <input type="text" id="cases" name='cases' placeholder="Enter amount of cases">
+                <label for="total_deaths"> Total deaths </label>
+                <input type="number" name="total_deaths" id="total_deaths"/>
               </li>
+              
               <li>
-                <label for="deaths">Deaths</label>
-                <input type="text" id="deaths" name='deaths' placeholder="Enter amount of deaths">
+                <label for="first_confirmed_case"> First Confirmed date </label>
+                <input type="date" name="first_confirmed_case" id="first_confirmed_case"/>
               </li>
+              
               <li>
-                <label for="initial-date">Initial Outbreak Date</label>
-                <input type="text" id="initial-date" name='initial-date' placeholder="Enter date">
+                <label for="last_confirmed_case"> Last Confirmed date </label>
+                <input type="date" name="last_confirmed_case" id="last_confirmed_case"/>
               </li>
+              
               <li>
-                <label for="last-case">Last Case</label>
-                <input type="text" id="last-case" name='last-case' placeholder="Enter most recent case">
+                <label for="outbreak_origin_cause"> Cause of Outbreak </label>
+                <input type="text" name="outbreak_origin_cause" id="outbreak_origin_cause"/>
               </li>
+              <button type="submit" >Submit Form</button>
+            </form>
+
+            <h1>Add New Reports Info</h1>
+            <form action= '/api/reports' id="recordSubmit" class="form" >
               <li>
-                <label for="vaccine-name">Vaccine Name</label>
-                <input type="text" id="vaccine-name" name='vaccine-name' placeholder="Enter vaccine name">
+                <label for="report_date"> Report date</label>
+                <input type="date" name="report_date" id="report_date"/>  
               </li>
+
               <li>
-                <label for="message" >Message</label>
-                <textarea rows="5" cols="33" name='message' id="message" placeholder="Enter your message here"></textarea>
+                <label for="fatalities"> Fatalities </label>
+                <input type="text" name="fatalities" id="fatalities"/>  
               </li>
+
               <li>
-                <button type="submit" action="/API" method="post" name='completeForm' id='completeForm' >
-                    Submit 
-                </button>
+                <label for="confirmed_cases"> confirmed cases </label>
+                <input type="number" name="confirmed_cases" id="confirmed_cases"/>  
               </li>
-            </ul>   
-          </form>
+
+              <li>
+                <label for="probable_cases"> Probable cases </label>
+                <input type="number" name="probable_cases" id="probable_cases"/>  
+              </li>
+
+              <button type="submit" >Submit Form</button>
+            </form>
+
+            <h1>Add New Treatments Info</h1>
+              <form action= '/api/treatments' id="recordSubmit" class="form" >
+                <li>
+                  <label for="total_vaccinations"> Total Vaccinations </label>
+                  <input type="number" name="total_vaccinations" id="total_vaccinations"/>  
+                </li>
+
+                <li>
+                  <label for="vaccine_form"> Country Code </label>
+                  <input type="text" name="vaccine_form" id="vaccine_form"/>  
+                </li>
+
+                <li>
+                  <label for="vaccine_success_rate"> Vaccine success rate </label>
+                  <input type="number" name="vaccine_success_rate" id="vaccine_success_rate"/>  
+                </li>
+
+                <li>
+                  <label for="vaccine_release_date"> Vaccine release date </label>
+                  <input type="date" name="vaccine_release_date" id="vaccine_release_date"/>  
+                </li>
+                <button type="submit" >Submit Form</button>
+              </form>
+          </ul>
         </div> 
 </body>
 <script src="script.js"></script>
