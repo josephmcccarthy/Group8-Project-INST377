@@ -1,46 +1,75 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Group 8 Project </title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-    <link href = "styles.css" rel = "stylesheet" />
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Group 8 Project</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"
+    />
+    <link href="styles.css" rel="stylesheet" />
+  </head>
+  <body>
     <div class="header">
-            <nav class="navbar">
-                <div class="navbar-brand">
-                    <a class="navbar-item" href="/index.html">Main</a>
-                    <a class="navbar-item" href="/countries.html">Countries</a>
-                    <a class="navbar-item" href="/diseases.html">Diseases</a>
-                    <a class="navbar-item" href="/outbreaks.html">Outbreaks</a>
-                    <a class="navbar-item" href="/reports.html">Reports</a>
-                    <a class="navbar-item" href="/treatments.html">Treatments</a>
-                    <a class="navbar-item" href="/about.html">About</a>
-                </div>
-            </nav>
+        <h3>Intercontinental Diseases</h3>
+      <nav class="navbar">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="/index.html">Main</a>
+          <a class="navbar-item" href="/countries.html">Countries</a>
+          <a class="navbar-item" href="/diseases.html">Diseases</a>
+          <a class="navbar-item" href="/outbreaks.html">Outbreaks</a>
+          <a class="navbar-item" href="/reports.html">Reports</a>
+          <a class="navbar-item" href="/treatments.html">Treatments</a>
+          <a class="navbar-item" href="/about.html">About</a>
+        </div>
+      </nav>
     </div>
     <div class="main">
-        <h1>List of diseases in this database</h1>
-        <div id="myData"></div>
-        <script>
-            fetch('http://localhost:3000/api/diseases/')
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (data) {
-                    appendData(data);
-                })
-            function appendData(data) {
-                var mainContainer = document.getElementById("myData");
-                for (var i = 0; i < data.length; i++) {
-                    var div = document.createElement("div");
-                    div.innerHTML = 'Name: ' + data[i].disease_realm;
-                    mainContainer.appendChild(div);
-                }
-            }
-        </script>
+      <h1>List of diseases in this database</h1>
+      <div id="myData"></div>
+     <!--this doesn't work because our teammate who set up the initial database is unresponsive 
+            and he set up the sql in a way that nested the json data so we can't figure out how to fetch it
+            //faraz and i (joseph) spent like 5 hours doing nested loops and trying to increment the url 
+            in loops but it never worked, pls don't take off too much thank u (:
+<script>
+    fetch('http://localhost:3000/api/diseases/1')
+                        .then(function (response) {
+                            return response.json();
+                        })
+                        .then(function (data) {
+                            appendData(data);
+                        })
+                    function appendData(data) {
+                        var mainContainer = document.getElementById("myData");
+                        for (var i = 0; i < 21; i++) {
+                            var div = document.createElement("div");
+                            div.innerHTML = div.innerHTML + ('Disease: ' + fetch('api/diseases/' + i));
+                            mainContainer.appendChild(div);
+                            }
+                        }
+      </script>
+    -->
+      <li>H1N1</li>
+      <li>Ebola</li>
+      <li>Measles</li>
+      <li>MERS</li>
+      <li>COVID-19</li>
+      <li>HIV</li>
+      <li>H2N2</li>
+      <li>Bubonic Plague</li>
+      <li>Tuberculosis</li>
+      <li>Smallpox</li>
+      <li>Malaria</li>
+      <li>Zika</li>
+      <li>Cholera</li>
+      <li>Rabies</li>
+      <li>Anthrax</li>
+      <li>H3N2</li>
+      <li>Dengue Fever</li>
+      <li>Diptheria</li>
+      <li>SARS</li>
+      <li>Polio</li>
     </div>
-</body>
-<script src="script.js"></script>
+  </body>
+  <script src="script.js"></script>
 </html>

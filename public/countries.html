@@ -8,6 +8,7 @@
 </head>
 <body>
     <div class="header">
+        <h3>Intercontinental Diseases</h3>
             <nav class="navbar">
                 <div class="navbar-brand">
                     <a class="navbar-item" href="/index.html">Main</a>
@@ -21,8 +22,8 @@
             </nav>
     </div>
     <div class="main">
-        <h1>List of countries in this database</h1>
-        <div id="myData"></div>
+        <h1>List of countries in this database</h1> 
+            <div id="myData"></div>
         <script>
             fetch('http://localhost:3000/api/countries/')
                 .then(function (response) {
