@@ -325,7 +325,7 @@ router.post('/outbreaks', async (req, res) => {
     res.json(newOutbreak);
   } catch (err) {
     console.error(err);
-    res.error('Server error');
+    res.json('Server error');
   }
 });
 
@@ -425,7 +425,7 @@ router.post('/reports', async (req, res) => {
     res.json(newReport);
   } catch (err) {
     console.error(err);
-    res.error('Server error');
+    res.json('Server error');
   }
 });
 
@@ -547,7 +547,7 @@ router.post('/treatments', async (req, res) => {
     res.json(newReport);
   } catch (err) {
     console.error(err);
-    res.error('Server error');
+    res.json('Server error');
   }
 });
 
